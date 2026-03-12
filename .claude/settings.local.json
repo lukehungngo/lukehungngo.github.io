@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api /users/lukehungngo/repos --jq '.[].name')",
+      "Bash(gh api --method PATCH /repos/lukehungngo/.github.io -f name='lukehungngo.github.io')",
+      "Bash(gh api /repos/lukehungngo/lukehungngo.github.io/pages)"
+    ]
+  }
+}
