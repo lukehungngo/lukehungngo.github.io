@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hung Ngo — Senior Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sidebar-bg:   #0a1628;
+      --sidebar-mid:  #0d1f3c;
+      --accent:       #00c9ff;
+      --accent2:      #0077b6;
+      --main-bg:      #f4f7fb;
+      --card-bg:      #ffffff;
+      --text-dark:    #1a202c;
+      --text-mid:     #4a5568;
+      --text-light:   #718096;
+      --border:       #e2e8f0;
+      --tag-bg:       rgba(0,201,255,0.1);
+      --tag-border:   rgba(0,201,255,0.4);
+      --glow:         0 0 12px rgba(0,201,255,0.35);
+      --sidebar-w:    300px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--main-bg);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* ── SIDEBAR ──────────────────────────────────── */
+    .sidebar {
+      position: relative;
+      width: var(--sidebar-w);
+      min-width: var(--sidebar-w);
+      background: var(--sidebar-bg);
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #sidebar-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .sidebar-inner {
+      position: relative;
+      z-index: 1;
+      padding: 40px 28px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      flex: 1;
+    }
+
+    /* Avatar / Name */
+    .profile-block { text-align: center; }
+
+    .avatar-ring {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 2.5px solid var(--accent);
+      box-shadow: var(--glow);
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--sidebar-mid);
+      overflow: hidden;
+    }
+
+    .profile-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .profile-title {
+      margin-top: 6px;
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* Sidebar section label */
+    .s-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .s-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(0,201,255,0.4), transparent);
+    }
+
+    /* Contact */
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .contact-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12.5px;
+      color: #a0aec0;
+      line-height: 1.5;
+    }
+    .contact-list li .icon {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 13px;
+    }
+
+    /* Skills */
+    .skill-group { margin-bottom: 14px; }
+    .skill-group-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: #cbd5e0;
+      margin-bottom: 6px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .skill-tag {
+      font-size: 10.5px;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      color: #90cdf4;
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .skill-tag:hover {
+      background: rgba(0,201,255,0.2);
+      color: #fff;
+      box-shadow: var(--glow);
+    }
+
+    /* Languages */
+    .lang-list { display: flex; gap: 10px; }
+    .lang-pill {
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 12px;
+      color: #e2e8f0;
+    }
+
+    /* Hobbies */
+    .hobby-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .hobby-tag {
+      font-size: 11px;
+      padding: 4px 11px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #a0aec0;
+    }
+
+    /* ── MAIN CONTENT ─────────────────────────────── */
+    .main {
+      flex: 1;
+      padding: 0;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    /* Hero canvas banner */
+    #hero-canvas {
+      display: block;
+      width: 100%;
+      height: 160px;
+    }
+
+    .main-inner {
+      padding: 36px 44px 52px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    /* Section */
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent2), transparent);
+      opacity: 0.3;
+      border-radius: 2px;
+    }
+
+    /* Profile summary */
+    .summary-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-mid);
+      background: var(--card-bg);
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .summary-text + .summary-text { margin-top: 12px; }
+
+    /* Job card */
+    .job-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .job-card:hover {
+      box-shadow: 0 6px 20px rgba(0,119,182,0.1);
+      transform: translateY(-1px);
+    }
+    .job-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 14px; bottom: 14px;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .job-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .job-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent2);
+      background: rgba(0,119,182,0.08);
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .job-company {
+      font-size: 12.5px;
+      color: var(--text-light);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .job-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .job-bullets li {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-mid);
+      padding-left: 16px;
+      position: relative;
+    }
+    .job-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 10px;
+      top: 4px;
+    }
+
+    /* Sub-role inside freelancer */
+    .sub-role {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .sub-role-header {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .sub-role-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-dark);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+    .sub-role-date {
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--accent2);
+      background: rgba(0,119,182,0.08);
+      padding: 2px 9px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .sub-role-skills {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-bottom: 6px;
+      margin-top: 2px;
+    }
+
+    /* Education / Course card */
+    .edu-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .edu-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+    .edu-body { flex: 1; }
+    .edu-degree {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+    .edu-school {
+      font-size: 12.5px;
+      color: var(--text-light);
+      margin: 2px 0 6px;
+    }
+    .edu-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+    .edu-badge {
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 20px;
+      background: rgba(0,119,182,0.08);
+      color: var(--accent2);
+      font-weight: 500;
+    }
+    .edu-date {
+      font-size: 11px;
+      color: var(--text-light);
+      padding: 2px 10px;
+      border-radius: 20px;
+      background: #f1f5f9;
+    }
+
+    /* Honor card */
+    .honor-card {
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .honor-icon { font-size: 28px; }
+    .honor-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #92400e;
+    }
+    .honor-sub { font-size: 12px; color: #b45309; margin-top: 2px; }
+
+    /* Publication */
+    .pub-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.6;
+      border-left: 3px solid var(--accent2);
+    }
+    .pub-venue {
+      font-size: 11.5px;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    /* ── PRINT ──────────────────────────────────── */
+    @media print {
+      body { display: block; background: #fff; }
+      canvas { display: none !important; }
+      .sidebar {
+        background: #0a1628 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        float: left;
+        width: 280px;
+      }
+      .main { margin-left: 280px; }
+      .job-card, .edu-card { break-inside: avoid; }
+      .job-card:hover { transform: none; box-shadow: none; }
+    }
+
+    /* Scrollbar */
+    .main::-webkit-scrollbar { width: 4px; }
+    .main::-webkit-scrollbar-track { background: transparent; }
+    .main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<!-- ──────────────── SIDEBAR ──────────────── -->
+<aside class="sidebar">
+  <canvas id="sidebar-canvas"></canvas>
+  <div class="sidebar-inner">
+
+    <!-- Profile -->
+    <div class="profile-block">
+      <div class="avatar-ring">
+        <img src="me.jpg" alt="Hung Ngo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />
+      </div>
+      <div class="profile-name">Hung Ngo</div>
+      <div class="profile-title">Senior Software Engineer</div>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <div class="s-label">Contact</div>
+      <ul class="contact-list">
+        <li><span class="icon">📍</span>Ho Chi Minh City, Vietnam</li>
+        <li><span class="icon">✉️</span>qhung.bm0409@gmail.com</li>
+        <li><span class="icon">📞</span>+84 772 044 481</li>
+        <li><span class="icon">🌏</span>Vietnamese</li>
+      </ul>
+    </div>
+
+    <!-- Skills -->
+    <div>
+      <div class="s-label">Skills</div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Languages &amp; Frameworks</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Go</span>
+          <span class="skill-tag">Solidity</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Django</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">GraphQL</span>
+          <span class="skill-tag">Forge</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Databases</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">DuckDB</span>
+          <span class="skill-tag">Elasticsearch</span>
+          <span class="skill-tag">LevelDB</span>
+          <span class="skill-tag">Weaviate</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Blockchain &amp; Web3</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Ethereum</span>
+          <span class="skill-tag">Smart Contracts</span>
+          <span class="skill-tag">DeFi</span>
+          <span class="skill-tag">NFTs</span>
+          <span class="skill-tag">Bridges</span>
+          <span class="skill-tag">POS / pPBFT</span>
+          <span class="skill-tag">Bitcoin</span>
+          <span class="skill-tag">Layer-1</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">AI &amp; ML</div>
+        <div class="skill-tags">
+          <span class="skill-tag">LLM Integration</span>
+          <span class="skill-tag">AI Agents</span>
+          <span class="skill-tag">Data Pipelines</span>
+          <span class="skill-tag">RAG</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Cloud &amp; DevOps</div>
+        <div class="skill-tags">
+          <span class="skill-tag">GCP</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Fly.io</span>
+          <span class="skill-tag">Railway</span>
+          <span class="skill-tag">Cloudflare</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div>
+      <div class="s-label">Languages</div>
+      <div class="lang-list">
+        <span class="lang-pill">🇬🇧 English</span>
+        <span class="lang-pill">🇻🇳 Vietnamese</span>
+      </div>
+    </div>
+
+    <!-- Hobbies -->
+    <div>
+      <div class="s-label">Hobbies</div>
+      <div class="hobby-tags">
+        <span class="hobby-tag">🎮 Dota 2</span>
+        <span class="hobby-tag">📖 Game Lore</span>
+        <span class="hobby-tag">🤝 Hangout</span>
+      </div>
+    </div>
+
+  </div>
+</aside>
+
+<!-- ──────────────── MAIN ──────────────── -->
+<main class="main">
+  <canvas id="hero-canvas"></canvas>
+
+  <div class="main-inner">
+
+    <!-- Profile Summary -->
+    <section>
+      <div class="section-title">Profile</div>
+      <div class="summary-text">
+        Senior Software Engineer specializing in <strong>AI-driven applications</strong>, <strong>LLM integration</strong>,
+        blockchain core development, and scalable backend systems. With <strong>7+ years of experience</strong>, I have
+        built intelligent data pipelines, DeFi protocols, NFT platforms, and Layer-1 blockchains, while integrating
+        machine learning and AI solutions into backend workflows. I excel at designing AI agent architectures and
+        high-performance APIs — and have <strong>2+ years leading</strong> backend and smart contract engineers
+        through complex projects in fast-paced environments.
+      </div>
+      <div class="summary-text" style="margin-top:10px;">
+        Deeply passionate about advancing <strong>real-world AI applications</strong> — from LLM integration and
+        intelligent data processing to autonomous agent pipelines. Currently building Pracper, an AI-powered
+        personal tutoring platform, while continuing to explore the intersection of AI and distributed systems.
+      </div>
+    </section>
+
+    <!-- Employment History -->
+    <section>
+      <div class="section-title">Employment History</div>
+
+      <!-- AI R&D + Pracper — combined card -->
+      <div class="job-card">
+        <div class="job-header">
+          <div class="job-title">AI Research &amp; Engineering</div>
+          <span class="job-date">Jan 2024 – Present</span>
+        </div>
+        <div class="job-company">Self-directed · Remote</div>
+
+        <div class="sub-role">
+          <div class="sub-role-header">
+            <div class="sub-role-title">AI Research &amp; Development</div>
+            <span class="sub-role-date">Jan 2024 – Jun 2025</span>
+          </div>
+          <ul class="job-bullets">
+            <li>Conducted independent research into <strong>LLM integration</strong> and real-world AI/ML applications.</li>
+            <li>Built and deployed <strong>AI-driven applications</strong> including chat, tutor, and search apps using OpenAI, Claude, Gemini APIs, and Hugging Face models.</li>
+            <li>Utilized <strong>LangChain</strong> for orchestration with Python and TypeScript backends.</li>
+            <li>Developed frontends in Next.js and managed cloud deployment via Dockerized services.</li>
+          </ul>
+        </div>
+
+        <div class="sub-role">
+          <div class="sub-role-header">
+            <div class="sub-role-title">Independent Software Engineer — Pracper Project</div>
+            <span class="sub-role-date">Jun 2025 – Present</span>
+          </div>
+          <ul class="job-bullets">
+            <li>Owning the end-to-end development of <strong>Pracper</strong>, an <strong>AI-powered personal tutoring platform</strong> (<a href="https://pracper.org/" style="color:var(--accent2);">pracper.org</a>).</li>
+            <li>Designing and implementing <strong>intelligent data processing</strong> and <strong>AI agent pipelines</strong>.</li>
+            <li>Managing the full project lifecycle — requirement analysis, architectural design, and cloud scaling.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Fjord Foundry -->
+      <div class="job-card">
+        <div class="job-header">
+          <div class="job-title">Senior Smart Contract &amp; Backend Engineer</div>
+          <span class="job-date">Nov 2024 – Oct 2025</span>
+        </div>
+        <div class="job-company">Fjord Foundry · Remote</div>
+        <ul class="job-bullets">
+          <li><strong>Smart Contracts:</strong> Designed, developed, and tested Solidity smart contracts from raw business requirements using Foundry (Forge). Owned the full lifecycle — requirement analysis, implementation, unit testing, QA, and auditor collaboration for maximum coverage and security scores.</li>
+          <li><strong>Backend:</strong> Built Golang services integrating Hypersync to stream and index on-chain events. Engineered data pipelines with DuckDB and PostgreSQL for efficient querying and storage.</li>
+          <li><strong>Infrastructure:</strong> Deployed backend systems on Fly.io and Railway, ensuring high availability and scalability.</li>
+          <li><strong>Leadership:</strong> Led a team of two backend and smart contract engineers — technical direction, code reviews, and timely delivery of features.</li>
+          <li>Took end-to-end ownership — analyzing business logic, designing architecture, coding, testing, and performing QA independently.</li>
+        </ul>
+      </div>
+
+      <!-- Garena -->
+      <div class="job-card">
+        <div class="job-header">
+          <div class="job-title">Senior Software Engineer</div>
+          <span class="job-date">May 2022 – Nov 2024</span>
+        </div>
+        <div class="job-company">Garena · Ho Chi Minh City</div>
+        <ul class="job-bullets">
+          <li>Designed, developed, and deployed backend applications using Python (Django), Node.js, PostgreSQL, MySQL, MongoDB, and Elasticsearch with GraphQL and REST APIs.</li>
+          <li>Independently delivered multiple backend projects each month, consistently meeting aggressive timelines.</li>
+          <li>Built and maintained mission-critical systems — including <strong>payment infrastructure</strong> and <strong>big data pipelines</strong> — serving millions of users with extreme attention to reliability, accuracy, and security.</li>
+          <li>Thrived under high-pressure schedules, ensuring quality and stability despite demanding release cycles.</li>
+        </ul>
+      </div>
+
+      <!-- Freelancer -->
+      <div class="job-card">
+        <div class="job-header">
+          <div class="job-title">Senior Software Engineer</div>
+          <span class="job-date">Jan 2022 – Present</span>
+        </div>
+        <div class="job-company">Freelancer · Remote</div>
+
+        <div class="sub-role">
+          <div class="sub-role-header">
+            <div class="sub-role-title">Evomone — Senior Fullstack Engineer</div>
+            <span class="sub-role-date">2025</span>
+          </div>
+          <div class="sub-role-skills">TypeScript · Expo · React Native · PostgreSQL · BreezSDK</div>
+          <ul class="job-bullets">
+            <li>Developed a <strong>Bitcoin Liquid Wallet</strong> with TypeScript backend and Breez SDK integration.</li>
+            <li>Led mobile team using React Native (Expo) and PostgreSQL; handled architecture, code reviews, and QA. Solely responsible for backend design and delivery.</li>
+          </ul>
+        </div>
+
+        <div class="sub-role">
+          <div class="sub-role-header">
+            <div class="sub-role-title">CPC — Senior Blockchain &amp; Backend Engineer</div>
+            <span class="sub-role-date">2023</span>
+          </div>
+          <div class="sub-role-skills">Java 8 · TypeScript · Fastify · Solidity · PostgreSQL</div>
+          <ul class="job-bullets">
+            <li><strong>Layer-1 Blockchain:</strong> Designed and implemented a custom Layer-1 forked from NXT; integrated an EVM-compatible smart contract module in Java from scratch enabling Solidity contracts on the new chain.</li>
+            <li>Built and deployed smart contracts on Ethereum and the CPC blockchain with cross-chain compatibility.</li>
+            <li>Independently developed TypeScript/Fastify backend services and designed APIs for dApp/wallet interaction.</li>
+          </ul>
+        </div>
+
+        <div class="sub-role">
+          <div class="sub-role-header">
+            <div class="sub-role-title">AskNFT — Senior Backend Engineer</div>
+            <span class="sub-role-date">2022</span>
+          </div>
+          <div class="sub-role-skills">Golang · Solidity · Java 18</div>
+          <ul class="job-bullets">
+            <li>Built an NFT portfolio tracker and search engine — backend in Golang and Java 18, with Solidity smart contracts for NFT data integration.</li>
+            <li>End-to-end: design, implementation, testing, and deployment.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Incognito -->
+      <div class="job-card">
+        <div class="job-header">
+          <div class="job-title">Senior Software Engineer</div>
+          <span class="job-date">Nov 2018 – Apr 2022</span>
+        </div>
+        <div class="job-company">Incognito Chain · Ho Chi Minh City, Vietnam</div>
+        <ul class="job-bullets">
+          <li>Developed a new <strong>Layer-1 blockchain in Golang</strong>.</li>
+          <li>Analyzed, designed, and implemented <strong>Blockchain Consensus from scratch (POS, pPBFT)</strong>, operating securely with 3,000 validators at peak.</li>
+          <li>Built cross-chain Bridge solutions and a block explorer to transform blockchain data for end-users.</li>
+          <li>Led and mentored backend engineers, providing technical direction and ensuring high-quality, on-time delivery.</li>
+          <li>Market analysis, blockchain trend research, requirement analysis, task planning, code review, and node deployment.</li>
+        </ul>
+      </div>
+
+      <!-- Infinity -->
+      <div class="job-card">
+        <div class="job-header">
+          <div class="job-title">Blockchain Developer</div>
+          <span class="job-date">Jun 2017 – Oct 2018</span>
+        </div>
+        <div class="job-company">Infinity Blockchain Labs · Ho Chi Minh City, Vietnam</div>
+        <ul class="job-bullets">
+          <li>Researched blockchain products in Ethereum and Bitcoin ecosystems.</li>
+          <li>Conducted blockchain training for multiple audiences and technical levels.</li>
+          <li>Designed, developed, and deployed Solidity smart contracts.</li>
+          <li>Developed backend applications using Node.js and MySQL.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <div class="section-title">Education</div>
+
+      <div class="edu-card">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-body">
+          <div class="edu-degree">Bachelor of Engineering — Honor Program</div>
+          <div class="edu-school">Ho Chi Minh University of Technology · Computer Science &amp; Engineering</div>
+          <div class="edu-meta">
+            <span class="edu-date">Sep 2014 – Nov 2018</span>
+            <span class="edu-badge">GPA 9.08 / 10</span>
+            <span class="edu-badge">🥈 Silver Medal</span>
+            <span class="edu-badge">Top 1 — ABET Certified</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-icon">🏫</div>
+        <div class="edu-body">
+          <div class="edu-degree">Excellent Certificate — Honor Student</div>
+          <div class="edu-school">Quoc Hoc Gifted High School · Hue, Vietnam</div>
+          <div class="edu-meta">
+            <span class="edu-date">Jun 2014</span>
+            <span class="edu-badge">Top 1 of Class</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section>
+      <div class="section-title">Courses &amp; Certifications</div>
+
+      <div class="edu-card">
+        <div class="edu-icon">₿</div>
+        <div class="edu-body">
+          <div class="edu-degree">Certified Bitcoin Professional (CBP)</div>
+          <div class="edu-school">Crypto Currency Certification Consortium (C4)</div>
+          <div class="edu-meta">
+            <span class="edu-date">2017</span>
+            <span class="edu-badge">Credential: 16e483</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-icon">📊</div>
+        <div class="edu-body">
+          <div class="edu-degree">Fundamental Business Analysis</div>
+          <div class="edu-school">BAC — Business Analyst Training Center, Vietnam</div>
+          <div class="edu-meta">
+            <span class="edu-date">Nov 2020</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Honors -->
+    <section>
+      <div class="section-title">Honors &amp; Awards</div>
+      <div class="honor-card">
+        <div class="honor-icon">🥉</div>
+        <div>
+          <div class="honor-title">APEC App Challenge — 3rd Place Winner</div>
+          <div class="honor-sub">Port Moresby, 2018 · Created a blockchain-based identity registration app for bilum makers</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section>
+      <div class="section-title">Publications</div>
+      <div class="pub-card">
+        Using geographic information system of traveling journey to identify bus route
+        <div class="pub-venue">SEATUC 2017 · Ho Chi Minh City</div>
+      </div>
+    </section>
+
+  </div><!-- /main-inner -->
+</main>
+
+<script>
+// ──────────────────────────────────────────────────
+// 1. SIDEBAR PARTICLE NETWORK
+// ──────────────────────────────────────────────────
+(function () {
+  const canvas = document.getElementById('sidebar-canvas');
+  const sidebar = canvas.parentElement;
+
+  function resize() {
+    canvas.width  = sidebar.offsetWidth;
+    canvas.height = sidebar.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', () => { resize(); });
+
+  const ctx = canvas.getContext('2d');
+  const N = 30;
+  const LINK_DIST = 90;
+  const particles = [];
+
+  for (let i = 0; i < N; i++) {
+    particles.push({
+      x:  Math.random() * canvas.width,
+      y:  Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r:  Math.random() * 1.8 + 1,
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Update positions
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+    }
+
+    // Draw links
+    for (let i = 0; i < N; i++) {
+      for (let j = i + 1; j < N; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < LINK_DIST) {
+          const alpha = (1 - dist / LINK_DIST) * 0.35;
+          ctx.strokeStyle = `rgba(0,201,255,${alpha})`;
+          ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw dots
+    for (const p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,201,255,0.6)';
+      ctx.shadowColor = '#00c9ff';
+      ctx.shadowBlur = 6;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+
+// ──────────────────────────────────────────────────
+// 2. HERO CANVAS BANNER
+// ──────────────────────────────────────────────────
+(function () {
+  const canvas = document.getElementById('hero-canvas');
+  const main = canvas.parentElement;
+
+  function resize() {
+    canvas.width  = main.offsetWidth;
+    canvas.height = 160;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const ctx = canvas.getContext('2d');
+
+  function draw() {
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    // Background gradient
+    const grad = ctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, '#0a1628');
+    grad.addColorStop(0.5, '#0d2748');
+    grad.addColorStop(1, '#0a1e3d');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+
+    // Hex grid overlay (subtle)
+    ctx.strokeStyle = 'rgba(0,201,255,0.06)';
+    ctx.lineWidth = 1;
+    const size = 28;
+    const colW = size * Math.sqrt(3);
+    const rowH = size * 1.5;
+    for (let row = -1; row < h / rowH + 2; row++) {
+      for (let col = -1; col < w / colW + 2; col++) {
+        const cx = col * colW + (row % 2) * colW / 2;
+        const cy = row * rowH;
+        ctx.beginPath();
+        for (let k = 0; k < 6; k++) {
+          const angle = Math.PI / 180 * (60 * k - 30);
+          const px = cx + size * Math.cos(angle);
+          const py = cy + size * Math.sin(angle);
+          k === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+        ctx.stroke();
+      }
+    }
+
+    // Wave curves
+    for (let i = 0; i < 3; i++) {
+      const alpha = 0.12 - i * 0.03;
+      ctx.beginPath();
+      ctx.moveTo(0, h * 0.55 + i * 15);
+      ctx.bezierCurveTo(
+        w * 0.25, h * 0.3  + i * 10,
+        w * 0.6,  h * 0.75 + i * 8,
+        w,        h * 0.45 + i * 12
+      );
+      ctx.strokeStyle = `rgba(0,201,255,${alpha})`;
+      ctx.lineWidth = 2 - i * 0.4;
+      ctx.stroke();
+    }
+
+    // Name text
+    ctx.font = "bold 48px 'Space Grotesk', sans-serif";
+    ctx.fillStyle = 'rgba(255,255,255,0.92)';
+    ctx.letterSpacing = '1px';
+    ctx.fillText('Hung Ngo', 44, 80);
+
+    // Subtitle
+    ctx.font = "500 14px 'Inter', sans-serif";
+    ctx.fillStyle = 'rgba(0,201,255,0.85)';
+    ctx.fillText('SENIOR SOFTWARE ENGINEER  ·  AI  ·  LLM  ·  BLOCKCHAIN  ·  BACKEND', 46, 112);
+
+    // Glow line at bottom
+    const lineGrad = ctx.createLinearGradient(0, 0, w, 0);
+    lineGrad.addColorStop(0, 'rgba(0,201,255,0.6)');
+    lineGrad.addColorStop(0.5, 'rgba(0,201,255,0.9)');
+    lineGrad.addColorStop(1, 'rgba(0,201,255,0.1)');
+    ctx.strokeStyle = lineGrad;
+    ctx.lineWidth = 2;
+    ctx.shadowColor = '#00c9ff';
+    ctx.shadowBlur = 10;
+    ctx.beginPath();
+    ctx.moveTo(0, h - 1);
+    ctx.lineTo(w, h - 1);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+  }
+
+  draw();
+  window.addEventListener('resize', draw);
+})();
+</script>
+</body>
+</html>
