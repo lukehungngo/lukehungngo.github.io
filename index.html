@@ -20,8 +20,6 @@
       }
 
       :root {
-        --sidebar-bg: #0a1628;
-        --sidebar-mid: #0d1f3c;
         --accent: #00c9ff;
         --accent2: #0077b6;
         --main-bg: #f4f7fb;
@@ -30,10 +28,9 @@
         --text-mid: #4a5568;
         --text-light: #718096;
         --border: #e2e8f0;
-        --tag-bg: rgba(0, 201, 255, 0.1);
-        --tag-border: rgba(0, 201, 255, 0.4);
-        --glow: 0 0 12px rgba(0, 201, 255, 0.35);
-        --sidebar-w: 300px;
+        --tag-bg: rgba(0, 119, 182, 0.08);
+        --tag-border: rgba(0, 119, 182, 0.25);
+        --header-bg: #0a1628;
       }
 
       html {
@@ -45,22 +42,17 @@
         background: var(--main-bg);
         color: var(--text-dark);
         min-height: 100vh;
-        display: flex;
       }
 
-      /* ── SIDEBAR ──────────────────────────────────── */
-      .sidebar {
-        position: relative;
-        width: var(--sidebar-w);
-        min-width: var(--sidebar-w);
-        background: var(--sidebar-bg);
+      /* ── HEADER ──────────────────────────────────── */
+      .header {
+        background: var(--header-bg);
         color: #e2e8f0;
-        display: flex;
-        flex-direction: column;
+        position: relative;
         overflow: hidden;
       }
 
-      #sidebar-canvas {
+      #header-canvas {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -69,38 +61,49 @@
         z-index: 0;
       }
 
-      .sidebar-inner {
+      .header-inner {
         position: relative;
         z-index: 1;
-        padding: 40px 28px 36px;
-        display: flex;
-        flex-direction: column;
-        gap: 32px;
-        flex: 1;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 44px 32px;
       }
 
-      /* Avatar / Name */
-      .profile-block {
-        text-align: center;
+      .header-top {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 20px;
       }
 
       .avatar-ring {
-        width: 96px;
-        height: 96px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
         border: 2.5px solid var(--accent);
-        box-shadow: var(--glow);
-        margin: 0 auto 16px;
+        box-shadow: 0 0 12px rgba(0, 201, 255, 0.35);
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--sidebar-mid);
+        background: #0d1f3c;
         overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .avatar-ring img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .header-name-block {
+        flex: 1;
       }
 
       .profile-name {
         font-family: "Space Grotesk", sans-serif;
-        font-size: 22px;
+        font-size: 28px;
         font-weight: 700;
         color: #fff;
         letter-spacing: 0.5px;
@@ -108,94 +111,92 @@
       }
 
       .profile-title {
-        margin-top: 6px;
-        font-size: 11.5px;
+        margin-top: 4px;
+        font-size: 12px;
         font-weight: 500;
         letter-spacing: 2px;
         text-transform: uppercase;
         color: var(--accent);
       }
 
-      /* Sidebar section label */
-      .s-label {
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 10px;
-        font-weight: 600;
-        letter-spacing: 2.5px;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 12px;
+      /* Contact row */
+      .contact-row {
         display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .s-label::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: linear-gradient(90deg, rgba(0, 201, 255, 0.4), transparent);
+        flex-wrap: wrap;
+        gap: 18px;
+        list-style: none;
+        margin-bottom: 24px;
       }
 
-      /* Contact */
-      .contact-list {
-        list-style: none;
+      .contact-row li {
         display: flex;
-        flex-direction: column;
-        gap: 9px;
-      }
-      .contact-list li {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
+        align-items: center;
+        gap: 6px;
         font-size: 12.5px;
         color: #a0aec0;
-        line-height: 1.5;
       }
-      .contact-list li .icon {
+
+      .contact-row li .icon {
         color: var(--accent);
-        flex-shrink: 0;
-        margin-top: 1px;
         font-size: 13px;
       }
 
-      /* Skills */
-      .skill-group {
-        margin-bottom: 14px;
+      /* Skills in header */
+      .skills-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
       }
-      .skill-group-name {
-        font-size: 11px;
+
+      .skill-row {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+
+      .skill-row-label {
+        font-size: 10px;
         font-weight: 600;
-        color: #cbd5e0;
-        margin-bottom: 6px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--accent);
+        white-space: nowrap;
+        min-width: 130px;
       }
+
       .skill-tags {
         display: flex;
         flex-wrap: wrap;
         gap: 5px;
       }
+
       .skill-tag {
         font-size: 10.5px;
         padding: 3px 9px;
         border-radius: 20px;
-        background: var(--tag-bg);
-        border: 1px solid var(--tag-border);
+        background: rgba(0, 201, 255, 0.1);
+        border: 1px solid rgba(0, 201, 255, 0.4);
         color: #90cdf4;
         transition: all 0.2s;
         cursor: default;
       }
+
       .skill-tag:hover {
         background: rgba(0, 201, 255, 0.2);
         color: #fff;
-        box-shadow: var(--glow);
+        box-shadow: 0 0 12px rgba(0, 201, 255, 0.35);
       }
 
-      /* Languages */
-      .lang-list {
+      /* Languages row */
+      .lang-row {
         display: flex;
         gap: 10px;
+        align-items: center;
+        margin-top: 4px;
       }
+
       .lang-pill {
-        padding: 5px 14px;
+        padding: 4px 12px;
         border-radius: 20px;
         background: rgba(255, 255, 255, 0.06);
         border: 1px solid rgba(255, 255, 255, 0.12);
@@ -203,37 +204,10 @@
         color: #e2e8f0;
       }
 
-      /* Hobbies */
-      .hobby-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-      }
-      .hobby-tag {
-        font-size: 11px;
-        padding: 4px 11px;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #a0aec0;
-      }
-
       /* ── MAIN CONTENT ─────────────────────────────── */
-      .main {
-        flex: 1;
-        padding: 0;
-        overflow-y: auto;
-        position: relative;
-      }
-
-      /* Hero canvas banner */
-      #hero-canvas {
-        display: block;
-        width: 100%;
-        height: 160px;
-      }
-
       .main-inner {
+        max-width: 900px;
+        margin: 0 auto;
         padding: 36px 44px 52px;
         display: flex;
         flex-direction: column;
@@ -253,6 +227,7 @@
         align-items: center;
         gap: 10px;
       }
+
       .section-title::after {
         content: "";
         flex: 1;
@@ -273,6 +248,7 @@
         border-radius: 0 8px 8px 0;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
       }
+
       .summary-text + .summary-text {
         margin-top: 12px;
       }
@@ -290,10 +266,12 @@
           box-shadow 0.2s,
           transform 0.2s;
       }
+
       .job-card:hover {
         box-shadow: 0 6px 20px rgba(0, 119, 182, 0.1);
         transform: translateY(-1px);
       }
+
       .job-card::before {
         content: "";
         position: absolute;
@@ -344,6 +322,7 @@
         flex-direction: column;
         gap: 6px;
       }
+
       .job-bullets li {
         font-size: 13px;
         line-height: 1.65;
@@ -351,8 +330,9 @@
         padding-left: 16px;
         position: relative;
       }
+
       .job-bullets li::before {
-        content: "▸";
+        content: "\25B8";
         position: absolute;
         left: 0;
         color: var(--accent);
@@ -368,6 +348,7 @@
         border-radius: 6px;
         border: 1px solid var(--border);
       }
+
       .sub-role-header {
         display: flex;
         flex-wrap: nowrap;
@@ -376,6 +357,7 @@
         gap: 10px;
         margin-bottom: 4px;
       }
+
       .sub-role-title {
         font-size: 12.5px;
         font-weight: 600;
@@ -383,6 +365,7 @@
         min-width: 0;
         flex-shrink: 1;
       }
+
       .sub-role-date {
         font-size: 10.5px;
         font-weight: 500;
@@ -393,6 +376,7 @@
         white-space: nowrap;
         flex-shrink: 0;
       }
+
       .sub-role-skills {
         font-size: 11px;
         color: var(--text-light);
@@ -412,6 +396,7 @@
         gap: 16px;
         align-items: flex-start;
       }
+
       .edu-icon {
         width: 38px;
         height: 38px;
@@ -423,25 +408,30 @@
         flex-shrink: 0;
         font-size: 18px;
       }
+
       .edu-body {
         flex: 1;
       }
+
       .edu-degree {
         font-family: "Space Grotesk", sans-serif;
         font-size: 14px;
         font-weight: 600;
         color: var(--text-dark);
       }
+
       .edu-school {
         font-size: 12.5px;
         color: var(--text-light);
         margin: 2px 0 6px;
       }
+
       .edu-meta {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
       }
+
       .edu-badge {
         font-size: 11px;
         padding: 2px 10px;
@@ -450,6 +440,7 @@
         color: var(--accent2);
         font-weight: 500;
       }
+
       .edu-date {
         font-size: 11px;
         color: var(--text-light);
@@ -468,15 +459,18 @@
         gap: 14px;
         align-items: center;
       }
+
       .honor-icon {
         font-size: 28px;
       }
+
       .honor-title {
         font-family: "Space Grotesk", sans-serif;
         font-size: 14px;
         font-weight: 600;
         color: #92400e;
       }
+
       .honor-sub {
         font-size: 12px;
         color: #b45309;
@@ -494,94 +488,174 @@
         line-height: 1.6;
         border-left: 3px solid var(--accent2);
       }
+
       .pub-venue {
         font-size: 11.5px;
         color: var(--text-light);
         margin-top: 4px;
       }
 
+      /* Hobbies */
+      .hobby-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .hobby-tag {
+        font-size: 12px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        color: var(--text-mid);
+      }
+
+      /* ── RESPONSIVE ─────────────────────────────── */
+      @media (max-width: 768px) {
+        .header-inner {
+          padding: 28px 20px 24px;
+        }
+
+        .header-top {
+          gap: 16px;
+        }
+
+        .avatar-ring {
+          width: 60px;
+          height: 60px;
+        }
+
+        .profile-name {
+          font-size: 22px;
+        }
+
+        .contact-row {
+          gap: 10px 16px;
+        }
+
+        .skill-row {
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .skill-row-label {
+          min-width: unset;
+        }
+
+        .main-inner {
+          padding: 24px 20px 36px;
+          gap: 28px;
+        }
+
+        .job-header {
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .sub-role-header {
+          flex-wrap: wrap;
+        }
+
+        .edu-card {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .honor-card {
+          flex-direction: column;
+          text-align: center;
+          gap: 8px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header-inner {
+          padding: 20px 16px 20px;
+        }
+
+        .profile-name {
+          font-size: 20px;
+        }
+
+        .profile-title {
+          font-size: 10px;
+        }
+
+        .contact-row {
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .main-inner {
+          padding: 20px 16px 28px;
+        }
+
+        .job-card {
+          padding: 16px 14px;
+        }
+
+        .sub-role {
+          padding: 8px 10px;
+        }
+      }
+
       /* ── PRINT ──────────────────────────────────── */
       @media print {
         body {
-          display: block;
           background: #fff;
         }
+
         canvas {
           display: none !important;
         }
-        .sidebar {
+
+        .header {
           background: #0a1628 !important;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
-          float: left;
-          width: 280px;
         }
-        .main {
-          margin-left: 280px;
-        }
+
         .job-card,
         .edu-card {
           break-inside: avoid;
         }
+
         .job-card:hover {
           transform: none;
           box-shadow: none;
         }
       }
-
-      /* Scrollbar */
-      .main::-webkit-scrollbar {
-        width: 4px;
-      }
-      .main::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .main::-webkit-scrollbar-thumb {
-        background: var(--border);
-        border-radius: 4px;
-      }
     </style>
   </head>
   <body>
-    <!-- ──────────────── SIDEBAR ──────────────── -->
-    <aside class="sidebar">
-      <canvas id="sidebar-canvas"></canvas>
-      <div class="sidebar-inner">
-        <!-- Profile -->
-        <div class="profile-block">
+    <!-- ──────────────── HEADER ──────────────── -->
+    <header class="header">
+      <canvas id="header-canvas"></canvas>
+      <div class="header-inner">
+        <!-- Name + Avatar -->
+        <div class="header-top">
           <div class="avatar-ring">
-            <img
-              src="me.jpg"
-              alt="Hung Ngo"
-              style="
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 50%;
-              "
-            />
+            <img src="me.jpg" alt="Hung Ngo" />
           </div>
-          <div class="profile-name">Hung Ngo</div>
-          <div class="profile-title">Senior Software Engineer</div>
+          <div class="header-name-block">
+            <div class="profile-name">Hung Ngo</div>
+            <div class="profile-title">Senior Software Engineer</div>
+          </div>
         </div>
 
         <!-- Contact -->
-        <div>
-          <div class="s-label">Contact</div>
-          <ul class="contact-list">
-            <li><span class="icon">📍</span>Ho Chi Minh City, Vietnam</li>
-            <li><span class="icon">✉️</span>qhung.bm0409@gmail.com</li>
-            <li><span class="icon">📞</span>+84 363911081</li>
-            <li><span class="icon">🌏</span>Vietnamese</li>
-          </ul>
-        </div>
+        <ul class="contact-row">
+          <li><span class="icon">&#x1F4CD;</span>Ho Chi Minh City, Vietnam</li>
+          <li><span class="icon">&#x2709;&#xFE0F;</span>qhung.bm0409@gmail.com</li>
+          <li><span class="icon">&#x1F4DE;</span>+84 363911081</li>
+          <li><span class="icon">&#x1F30F;</span>Vietnamese</li>
+        </ul>
 
         <!-- Skills -->
-        <div>
-          <div class="s-label">Skills</div>
-
-          <div class="skill-group">
-            <div class="skill-group-name">Languages &amp; Frameworks</div>
+        <div class="skills-section">
+          <div class="skill-row">
+            <span class="skill-row-label">Languages &amp; Frameworks</span>
             <div class="skill-tags">
               <span class="skill-tag">Go</span>
               <span class="skill-tag">Solidity</span>
@@ -595,8 +669,8 @@
             </div>
           </div>
 
-          <div class="skill-group">
-            <div class="skill-group-name">Databases</div>
+          <div class="skill-row">
+            <span class="skill-row-label">Databases</span>
             <div class="skill-tags">
               <span class="skill-tag">PostgreSQL</span>
               <span class="skill-tag">MySQL</span>
@@ -608,8 +682,8 @@
             </div>
           </div>
 
-          <div class="skill-group">
-            <div class="skill-group-name">Blockchain &amp; Web3</div>
+          <div class="skill-row">
+            <span class="skill-row-label">Blockchain &amp; Web3</span>
             <div class="skill-tags">
               <span class="skill-tag">Ethereum</span>
               <span class="skill-tag">Smart Contracts</span>
@@ -622,8 +696,8 @@
             </div>
           </div>
 
-          <div class="skill-group">
-            <div class="skill-group-name">AI &amp; ML</div>
+          <div class="skill-row">
+            <span class="skill-row-label">AI &amp; ML</span>
             <div class="skill-tags">
               <span class="skill-tag">LLM Integration</span>
               <span class="skill-tag">AI Agents</span>
@@ -634,8 +708,8 @@
             </div>
           </div>
 
-          <div class="skill-group">
-            <div class="skill-group-name">Cloud &amp; DevOps</div>
+          <div class="skill-row">
+            <span class="skill-row-label">Cloud &amp; DevOps</span>
             <div class="skill-tags">
               <span class="skill-tag">GCP</span>
               <span class="skill-tag">Docker</span>
@@ -644,33 +718,20 @@
               <span class="skill-tag">Cloudflare</span>
             </div>
           </div>
-        </div>
 
-        <!-- Languages -->
-        <div>
-          <div class="s-label">Languages</div>
-          <div class="lang-list">
-            <span class="lang-pill">🇬🇧 English</span>
-            <span class="lang-pill">🇻🇳 Vietnamese</span>
-          </div>
-        </div>
-
-        <!-- Hobbies -->
-        <div>
-          <div class="s-label">Hobbies</div>
-          <div class="hobby-tags">
-            <span class="hobby-tag">🎮 Dota 2</span>
-            <span class="hobby-tag">📖 Game Lore</span>
-            <span class="hobby-tag">🤝 Hangout</span>
+          <div class="skill-row">
+            <span class="skill-row-label">Languages</span>
+            <div class="lang-row">
+              <span class="lang-pill">English</span>
+              <span class="lang-pill">Vietnamese</span>
+            </div>
           </div>
         </div>
       </div>
-    </aside>
+    </header>
 
     <!-- ──────────────── MAIN ──────────────── -->
-    <main class="main">
-      <canvas id="hero-canvas"></canvas>
-
+    <main>
       <div class="main-inner">
         <!-- Profile Summary -->
         <section>
@@ -741,7 +802,7 @@
             <div class="sub-role">
               <div class="sub-role-header">
                 <div class="sub-role-title">
-                  Independent Software Engineer — Pracper Project
+                  Independent Software Engineer — Pracper - AI Tutor
                 </div>
                 <span class="sub-role-date">Jun 2025 – Present</span>
               </div>
@@ -762,6 +823,39 @@
                 <li>
                   Managing the full project lifecycle — requirement analysis,
                   architectural design, and cloud scaling.
+                </li>
+              </ul>
+            </div>
+
+            <div class="sub-role">
+              <div class="sub-role-header">
+                <div class="sub-role-title">
+                  AgentWall — Pre-deployment Security Scanner for AI Agents
+                </div>
+                <span class="sub-role-date">2026</span>
+              </div>
+              <div class="sub-role-skills">
+                Python · AST Analysis · LangChain · CI/CD
+              </div>
+              <ul class="job-bullets">
+                <li>
+                  Created <strong>AgentWall</strong>, an open-source static
+                  analysis tool that detects memory leakage, memory poisoning,
+                  and unsafe tool permissions in AI agent code before deployment
+                  (<a
+                    href="https://github.com/lukehungngo/agent-wall"
+                    style="color: var(--accent2)"
+                    >github.com/lukehungngo/agent-wall</a
+                  >).
+                </li>
+                <li>
+                  Scans LangChain agents via Python AST — no code execution — detecting
+                  cross-tenant data leakage in vector stores, injection patterns (MINJA, NeurIPS 2025),
+                  and destructive tools without approval gates.
+                </li>
+                <li>
+                  Designed for CI integration with JSON/SARIF reporting, configurable severity thresholds,
+                  and support for 12+ vector store backends.
                 </li>
               </ul>
             </div>
@@ -980,7 +1074,7 @@
           <div class="section-title">Education</div>
 
           <div class="edu-card">
-            <div class="edu-icon">🎓</div>
+            <div class="edu-icon">&#x1F393;</div>
             <div class="edu-body">
               <div class="edu-degree">
                 Bachelor of Engineering — Honor Program
@@ -992,14 +1086,14 @@
               <div class="edu-meta">
                 <span class="edu-date">Sep 2014 – Nov 2018</span>
                 <span class="edu-badge">GPA 9.08 / 10</span>
-                <span class="edu-badge">🥈 Silver Medal</span>
+                <span class="edu-badge">&#x1F948; Silver Medal</span>
                 <span class="edu-badge">Top 1 — ABET Certified</span>
               </div>
             </div>
           </div>
 
           <div class="edu-card">
-            <div class="edu-icon">🏫</div>
+            <div class="edu-icon">&#x1F3EB;</div>
             <div class="edu-body">
               <div class="edu-degree">
                 Excellent Certificate — Honor Student
@@ -1020,7 +1114,7 @@
           <div class="section-title">Courses &amp; Certifications</div>
 
           <div class="edu-card">
-            <div class="edu-icon">₿</div>
+            <div class="edu-icon">&#x20BF;</div>
             <div class="edu-body">
               <div class="edu-degree">Certified Bitcoin Professional (CBP)</div>
               <div class="edu-school">
@@ -1034,7 +1128,7 @@
           </div>
 
           <div class="edu-card">
-            <div class="edu-icon">📊</div>
+            <div class="edu-icon">&#x1F4CA;</div>
             <div class="edu-body">
               <div class="edu-degree">Fundamental Business Analysis</div>
               <div class="edu-school">
@@ -1051,7 +1145,7 @@
         <section>
           <div class="section-title">Honors &amp; Awards</div>
           <div class="honor-card">
-            <div class="honor-icon">🥉</div>
+            <div class="honor-icon">&#x1F949;</div>
             <div>
               <div class="honor-title">
                 APEC App Challenge — 3rd Place Winner
@@ -1073,30 +1167,37 @@
             <div class="pub-venue">SEATUC 2017 · Ho Chi Minh City</div>
           </div>
         </section>
+
+        <!-- Hobbies -->
+        <section>
+          <div class="section-title">Hobbies</div>
+          <div class="hobby-tags">
+            <span class="hobby-tag">&#x1F3AE; Dota 2</span>
+            <span class="hobby-tag">&#x1F4D6; Game Lore</span>
+            <span class="hobby-tag">&#x1F91D; Hangout</span>
+          </div>
+        </section>
       </div>
-      <!-- /main-inner -->
     </main>
 
     <script>
       // ──────────────────────────────────────────────────
-      // 1. SIDEBAR PARTICLE NETWORK
+      // HEADER PARTICLE NETWORK + BANNER
       // ──────────────────────────────────────────────────
       (function () {
-        const canvas = document.getElementById("sidebar-canvas");
-        const sidebar = canvas.parentElement;
+        const canvas = document.getElementById("header-canvas");
+        const header = canvas.parentElement;
 
         function resize() {
-          canvas.width = sidebar.offsetWidth;
-          canvas.height = sidebar.offsetHeight;
+          canvas.width = header.offsetWidth;
+          canvas.height = header.offsetHeight;
         }
         resize();
-        window.addEventListener("resize", () => {
-          resize();
-        });
+        window.addEventListener("resize", resize);
 
         const ctx = canvas.getContext("2d");
-        const N = 30;
-        const LINK_DIST = 90;
+        const N = 50;
+        const LINK_DIST = 100;
         const particles = [];
 
         for (let i = 0; i < N; i++) {
@@ -1110,6 +1211,7 @@
         }
 
         function draw() {
+          resize();
           ctx.clearRect(0, 0, canvas.width, canvas.height);
 
           // Update positions
@@ -1127,7 +1229,7 @@
               const dy = particles[i].y - particles[j].y;
               const dist = Math.sqrt(dx * dx + dy * dy);
               if (dist < LINK_DIST) {
-                const alpha = (1 - dist / LINK_DIST) * 0.35;
+                const alpha = (1 - dist / LINK_DIST) * 0.25;
                 ctx.strokeStyle = `rgba(0,201,255,${alpha})`;
                 ctx.lineWidth = 0.8;
                 ctx.beginPath();
@@ -1142,103 +1244,16 @@
           for (const p of particles) {
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(0,201,255,0.6)";
+            ctx.fillStyle = "rgba(0,201,255,0.5)";
             ctx.shadowColor = "#00c9ff";
             ctx.shadowBlur = 6;
             ctx.fill();
             ctx.shadowBlur = 0;
           }
 
-          requestAnimationFrame(draw);
-        }
-        draw();
-      })();
-
-      // ──────────────────────────────────────────────────
-      // 2. HERO CANVAS BANNER
-      // ──────────────────────────────────────────────────
-      (function () {
-        const canvas = document.getElementById("hero-canvas");
-        const main = canvas.parentElement;
-
-        function resize() {
-          canvas.width = main.offsetWidth;
-          canvas.height = 160;
-        }
-        resize();
-        window.addEventListener("resize", resize);
-
-        const ctx = canvas.getContext("2d");
-
-        function draw() {
+          // Glow line at bottom
           const w = canvas.width;
           const h = canvas.height;
-          ctx.clearRect(0, 0, w, h);
-
-          // Background gradient
-          const grad = ctx.createLinearGradient(0, 0, w, h);
-          grad.addColorStop(0, "#0a1628");
-          grad.addColorStop(0.5, "#0d2748");
-          grad.addColorStop(1, "#0a1e3d");
-          ctx.fillStyle = grad;
-          ctx.fillRect(0, 0, w, h);
-
-          // Hex grid overlay (subtle)
-          ctx.strokeStyle = "rgba(0,201,255,0.06)";
-          ctx.lineWidth = 1;
-          const size = 28;
-          const colW = size * Math.sqrt(3);
-          const rowH = size * 1.5;
-          for (let row = -1; row < h / rowH + 2; row++) {
-            for (let col = -1; col < w / colW + 2; col++) {
-              const cx = col * colW + ((row % 2) * colW) / 2;
-              const cy = row * rowH;
-              ctx.beginPath();
-              for (let k = 0; k < 6; k++) {
-                const angle = (Math.PI / 180) * (60 * k - 30);
-                const px = cx + size * Math.cos(angle);
-                const py = cy + size * Math.sin(angle);
-                k === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
-              }
-              ctx.closePath();
-              ctx.stroke();
-            }
-          }
-
-          // Wave curves
-          for (let i = 0; i < 3; i++) {
-            const alpha = 0.12 - i * 0.03;
-            ctx.beginPath();
-            ctx.moveTo(0, h * 0.55 + i * 15);
-            ctx.bezierCurveTo(
-              w * 0.25,
-              h * 0.3 + i * 10,
-              w * 0.6,
-              h * 0.75 + i * 8,
-              w,
-              h * 0.45 + i * 12,
-            );
-            ctx.strokeStyle = `rgba(0,201,255,${alpha})`;
-            ctx.lineWidth = 2 - i * 0.4;
-            ctx.stroke();
-          }
-
-          // Name text
-          ctx.font = "bold 48px 'Space Grotesk', sans-serif";
-          ctx.fillStyle = "rgba(255,255,255,0.92)";
-          ctx.letterSpacing = "1px";
-          ctx.fillText("Hung Ngo", 44, 80);
-
-          // Subtitle
-          ctx.font = "500 14px 'Inter', sans-serif";
-          ctx.fillStyle = "rgba(0,201,255,0.85)";
-          ctx.fillText(
-            "SENIOR SOFTWARE ENGINEER  ·  AI  ·  LLM  ·  BLOCKCHAIN  ·  BACKEND",
-            46,
-            112,
-          );
-
-          // Glow line at bottom
           const lineGrad = ctx.createLinearGradient(0, 0, w, 0);
           lineGrad.addColorStop(0, "rgba(0,201,255,0.6)");
           lineGrad.addColorStop(0.5, "rgba(0,201,255,0.9)");
@@ -1252,10 +1267,10 @@
           ctx.lineTo(w, h - 1);
           ctx.stroke();
           ctx.shadowBlur = 0;
-        }
 
+          requestAnimationFrame(draw);
+        }
         draw();
-        window.addEventListener("resize", draw);
       })();
     </script>
   </body>
