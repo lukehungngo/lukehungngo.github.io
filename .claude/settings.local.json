@@ -3,7 +3,13 @@
     "allow": [
       "Bash(gh api /users/lukehungngo/repos --jq '.[].name')",
       "Bash(gh api --method PATCH /repos/lukehungngo/.github.io -f name='lukehungngo.github.io')",
-      "Bash(gh api /repos/lukehungngo/lukehungngo.github.io/pages)"
+      "Bash(gh api /repos/lukehungngo/lukehungngo.github.io/pages)",
+      "Bash(gh repo:*)",
+      "Bash(curl -s https://api.github.com/repos/lukehungngo/agent-wall)",
+      "Bash(gh api:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
