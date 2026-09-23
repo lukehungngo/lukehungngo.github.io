@@ -765,11 +765,119 @@
         <section>
           <div class="section-title">Employment History</div>
 
+          <!-- Contract — CoFab + Aitomatic -->
+          <div class="job-card">
+            <div class="job-header">
+              <div class="job-title">Senior Software Engineer</div>
+              <span class="job-date">Mar 2026 – Present</span>
+            </div>
+            <div class="job-company">Contractor · Remote</div>
+
+            <div class="sub-role">
+              <div class="sub-role-header">
+                <div class="sub-role-title">
+                  CoFab — Senior AI Engineer, CNC Quoting Automation
+                </div>
+                <span class="sub-role-date">May 2026 – Present</span>
+              </div>
+              <div class="sub-role-skills">
+                Python · LangGraph · OpenHands SDK · OpenCascade · FreeCAD ·
+                FastAPI · three.js · vLLM · Docker
+              </div>
+              <ul class="job-bullets">
+                <li>
+                  Building AI automation that turns a 2D drawing and a 3D STEP
+                  model into a CNC machining quote — machines, operations,
+                  cycle time, and cost.
+                </li>
+                <li>
+                  <strong>Engine-agentic:</strong> Owned the process-planning
+                  and cycle-time engine — a LangGraph pipeline with an
+                  OpenHands SDK agent and a deterministic planner over a YAML
+                  machining knowledge base, plus a FreeCAD CAM cycle-time
+                  service (FastAPI, Docker). 1,800+ tests; batch runtime cut
+                  from 2,279s to ~280s.
+                </li>
+                <li>
+                  <strong>StepAnalyzer:</strong> Extended the STEP
+                  feature-recognition service (OpenCascade) with a typed
+                  contract for the planning engine and 2D-drawing × 3D-model
+                  feature fusion. Raised turning-part recognition from 2/23 to
+                  20/23, and on a 417-feature ground-truth set lifted recall
+                  from 292 to 315 and cycle-time-ready features from 153 to
+                  276.
+                </li>
+                <li>
+                  <strong>3D geometry (three.js):</strong> Ported STEP →
+                  three.js geometry parsing to a Node service that computes
+                  bounding box, volume, and surface area for quoting, and
+                  delivered per-component spindle axes end to end — geometry
+                  service, quote engine, and the three.js viewer overlay.
+                </li>
+                <li>
+                  <strong>Production:</strong> Moved the drawing-OCR service
+                  (FastAPI, vLLM, Qwen3.6 vision-language model) onto AMD
+                  MI325X GPUs with a Redis-backed durable job queue, and
+                  packaged the costing engine as a standalone quote API with
+                  CI-built Docker images.
+                </li>
+              </ul>
+            </div>
+
+            <div class="sub-role">
+              <div class="sub-role-header">
+                <div class="sub-role-title">
+                  Aitomatic — Senior Software Engineer, Dana AI Agent Platform
+                </div>
+                <span class="sub-role-date">Mar 2026 – Present</span>
+              </div>
+              <div class="sub-role-skills">
+                Python · FastAPI · Django · React · TypeScript · Redis ·
+                PostgreSQL · Kubernetes · Terraform · GCP · AWS · Playwright
+              </div>
+              <ul class="job-bullets">
+                <li>
+                  Core engineer on <strong>Dana</strong>, Aitomatic's enterprise
+                  AI-agent platform where organizations build domain agents,
+                  curate their knowledge, and chat with them on isolated agent
+                  pods. Authored 200+ merged PRs, the most of any contributor.
+                </li>
+                <li>
+                  <strong>Agent runtime:</strong> Built resumable, durable chat
+                  streaming on Redis Streams with per-conversation agent
+                  sessions; added context-budget guards,
+                  latency caches, and effort directives that cut a
+                  structured-output task from 17.4s to 4.1s.
+                </li>
+                <li>
+                  <strong>Agent knowledge:</strong> Shipped ontology version
+                  control (checkpoints, drafts, review and publish), source
+                  citations, VLM-powered PDF extraction, a Self-Evolve ontology
+                  worker, and an agent scheduler with a durable task lifecycle.
+                </li>
+                <li>
+                  <strong>Platform &amp; security:</strong> Built AWS customer
+                  deployment lanes with Terraform (EKS, RDS, S3, Lambda) and set
+                  up production Grafana/Loki observability. Drove security
+                  remediation — scope-aware authorization, secretless agent
+                  pods, KMS-backed encryption — and brought fixable
+                  Critical/High image vulnerabilities to zero.
+                </li>
+                <li>
+                  <strong>Quality &amp; ownership:</strong> Built the
+                  LLM-as-judge benchmark harness and most Playwright E2E
+                  suites; authored nearly all of the platform's ADRs and PRDs;
+                  ran 70+ develop → main release promotions.
+                </li>
+              </ul>
+            </div>
+          </div>
+
           <!-- AI R&D + Pracper — combined card -->
           <div class="job-card">
             <div class="job-header">
               <div class="job-title">AI Research &amp; Engineering</div>
-              <span class="job-date">Jan 2024 – Present</span>
+              <span class="job-date">Jan 2024 – Mar 2026</span>
             </div>
             <div class="job-company">Self-directed · Remote</div>
 
