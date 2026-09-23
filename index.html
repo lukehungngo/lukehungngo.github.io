@@ -20,17 +20,17 @@
       }
 
       :root {
-        --accent: #10b981;
-        --accent2: #047857;
+        --accent: #4ade80;
+        --accent2: #166534;
         --main-bg: #f5f8f6;
         --card-bg: #ffffff;
         --text-dark: #1a202c;
         --text-mid: #4a5568;
         --text-light: #718096;
         --border: #e2e8f0;
-        --tag-bg: rgba(4, 120, 87, 0.08);
-        --tag-border: rgba(4, 120, 87, 0.25);
-        --header-bg: #0b1c18;
+        --tag-bg: rgba(22, 101, 52, 0.08);
+        --tag-border: rgba(22, 101, 52, 0.25);
+        --header-bg: #0a120f;
       }
 
       html {
@@ -81,11 +81,11 @@
         height: 80px;
         border-radius: 50%;
         border: 2.5px solid var(--accent);
-        box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+        box-shadow: 0 0 12px rgba(74, 222, 128, 0.35);
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #0f2a23;
+        background: #0f1d17;
         overflow: hidden;
         flex-shrink: 0;
       }
@@ -174,17 +174,17 @@
         font-size: 10.5px;
         padding: 3px 9px;
         border-radius: 20px;
-        background: rgba(16, 185, 129, 0.1);
-        border: 1px solid rgba(16, 185, 129, 0.4);
-        color: #a7f3d0;
+        background: rgba(74, 222, 128, 0.1);
+        border: 1px solid rgba(74, 222, 128, 0.4);
+        color: #dcfce7;
         transition: all 0.2s;
         cursor: default;
       }
 
       .skill-tag:hover {
-        background: rgba(16, 185, 129, 0.2);
+        background: rgba(74, 222, 128, 0.2);
         color: #fff;
-        box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+        box-shadow: 0 0 12px rgba(74, 222, 128, 0.35);
       }
 
       /* Languages row */
@@ -273,7 +273,7 @@
       }
 
       .job-card:hover {
-        box-shadow: 0 6px 20px rgba(4, 120, 87, 0.1);
+        box-shadow: 0 6px 20px rgba(22, 101, 52, 0.1);
         transform: translateY(-1px);
       }
 
@@ -307,7 +307,7 @@
         font-size: 11px;
         font-weight: 500;
         color: var(--accent2);
-        background: rgba(4, 120, 87, 0.08);
+        background: rgba(22, 101, 52, 0.08);
         padding: 3px 10px;
         border-radius: 20px;
         white-space: nowrap;
@@ -375,7 +375,7 @@
         font-size: 10.5px;
         font-weight: 500;
         color: var(--accent2);
-        background: rgba(4, 120, 87, 0.08);
+        background: rgba(22, 101, 52, 0.08);
         padding: 2px 9px;
         border-radius: 20px;
         white-space: nowrap;
@@ -441,7 +441,7 @@
         font-size: 11px;
         padding: 2px 10px;
         border-radius: 20px;
-        background: rgba(4, 120, 87, 0.08);
+        background: rgba(22, 101, 52, 0.08);
         color: var(--accent2);
         font-weight: 500;
       }
@@ -616,7 +616,7 @@
         }
 
         .header {
-          background: #0b1c18 !important;
+          background: #0a120f !important;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
@@ -1452,7 +1452,7 @@
               const dist = Math.sqrt(dx * dx + dy * dy);
               if (dist < LINK_DIST) {
                 const alpha = (1 - dist / LINK_DIST) * 0.25;
-                ctx.strokeStyle = `rgba(16,185,129,${alpha})`;
+                ctx.strokeStyle = `rgba(74,222,128,${alpha})`;
                 ctx.lineWidth = 0.8;
                 ctx.beginPath();
                 ctx.moveTo(particles[i].x, particles[i].y);
@@ -1466,8 +1466,8 @@
           for (const p of particles) {
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(16,185,129,0.5)";
-            ctx.shadowColor = "#10b981";
+            ctx.fillStyle = "rgba(74,222,128,0.5)";
+            ctx.shadowColor = "#4ade80";
             ctx.shadowBlur = 6;
             ctx.fill();
             ctx.shadowBlur = 0;
@@ -1477,12 +1477,12 @@
           const w = canvas.width;
           const h = canvas.height;
           const lineGrad = ctx.createLinearGradient(0, 0, w, 0);
-          lineGrad.addColorStop(0, "rgba(16,185,129,0.6)");
-          lineGrad.addColorStop(0.5, "rgba(16,185,129,0.9)");
-          lineGrad.addColorStop(1, "rgba(16,185,129,0.1)");
+          lineGrad.addColorStop(0, "rgba(74,222,128,0.6)");
+          lineGrad.addColorStop(0.5, "rgba(74,222,128,0.9)");
+          lineGrad.addColorStop(1, "rgba(74,222,128,0.1)");
           ctx.strokeStyle = lineGrad;
           ctx.lineWidth = 2;
-          ctx.shadowColor = "#10b981";
+          ctx.shadowColor = "#4ade80";
           ctx.shadowBlur = 10;
           ctx.beginPath();
           ctx.moveTo(0, h - 1);
